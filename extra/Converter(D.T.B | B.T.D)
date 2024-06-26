@@ -1,0 +1,42 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	fmt.Println(convertToDecimal([]float64{1, 0, 0, 1, 0}))
+	fmt.Println(converterToBinary(12))
+}
+
+func converterToBinary(x int) []int {
+	var nums []int
+	for x > 0 {
+		nums = append(nums, x%2)
+		x /= 2
+	}
+	return reverse(nums)
+}
+
+func convertToDecimal(nums []float64) float64 {
+	lengthbek := len(nums) - 1
+	var current float64 = 0
+	for _, el := range nums {
+		ikkiniki := math.Pow(float64(2), float64(lengthbek))
+		elementniki := ikkiniki * el
+		current += elementniki
+		lengthbek -= 1
+	}
+	return current
+}
+
+func reverse(nums []int) []int {
+	firstPointer, lastPointer := 0, len(nums)-1
+	for firstPointer < lastPointer {
+		nums[firstPointer], nums[lastPointer] = nums[lastPointer], nums[firstPointer]
+		firstPointer += 1
+		lastPointer -= 1
+	}
+	return nums
+}
