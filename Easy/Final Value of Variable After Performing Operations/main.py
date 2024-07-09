@@ -16,3 +16,5 @@ class Solution(object):
 if __name__ == '__main__':
     sol = Solution()
     sol.finalValueAfterOperations(["--X", "X++", "X++"])
+
+# https://leetcode.com/problems/final-value-of-variable-after-performing-operations/description/
