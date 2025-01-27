@@ -19,12 +19,7 @@ func (s *stack) Pop() rune {
 
 func isValid(s string) bool {
 	newstack := stack{}
-	if len(s) == 1 {
-		return false
-	}
-	if s[0] == ')' || s[0] == ']' || s[0] == '}' {
-		return false
-	}
+
 	for _, char := range s {
 		if char == '(' || char == '[' || char == '{' {
 			newstack.Push(char)
