@@ -23,7 +23,6 @@ class Solution(object):
             except:
                 result.sort()
 
-                # Convert result list to ListNode linked list
                 dummy = ListNode(0)
                 current = dummy
                 for val in result:
