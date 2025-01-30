@@ -2,26 +2,21 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
 	}
-	son := strconv.Itoa(x)
-	firstPointer := 0
-	lastPointer := len(son) - 1
-	for _ = range son {
-		if string(son[firstPointer]) != string(son[lastPointer]) {
-			return false
-		}
-		firstPointer += 1
-		lastPointer -= 1
+	reverse := 0
+	num := x
+	for num > 0 {
+		reverse = reverse*10 + num%10
+		num = num / 10
 	}
-	return true
+	return reverse == x
 }
 
 func main() {
-	fmt.Println(isPalindrome(121))
+	fmt.Println(isPalindrome(1212))
 }
