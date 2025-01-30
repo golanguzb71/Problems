@@ -1,9 +1,5 @@
 package main
 
-import (
-	"sort"
-)
-
 /**
  * Definition for singly-linked list.
  * type ListNode struct {
@@ -18,25 +14,40 @@ type ListNode struct {
 }
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	var (
-		resultArray []int
-	)
-	for list1 != nil {
-		resultArray = append(resultArray, list1.Val)
-		list1 = list1.Next
+	if list1 == nil {
+		return list2
 	}
-	for list2 != nil {
-		resultArray = append(resultArray, list2.Val)
-		list2 = list2.Next
+	if list2 == nil {
+		return list1
 	}
-	sort.Ints(resultArray)
-	dummy := &ListNode{}
-	current := dummy
-	for _, num := range resultArray {
-		current.Next = &ListNode{Val: num}
-		current = current.Next
+
+	var head, tail *ListNode
+
+	for list1 != nil && list2 != nil {
+		var node *ListNode
+		if list1.Val < list2.Val {
+			node = list1
+			list1 = list1.Next
+		} else {
+			node = list2
+			list2 = list2.Next
+		}
+		if head == nil {
+			head = node
+			tail = node
+		} else {
+			tail.Next = node
+			tail = node
+		}
+
+		if list1 != nil {
+			tail.Next = list1
+		}
+		if list2 != nil {
+			tail.Next = list2
+		}
 	}
-	return dummy.Next
+	return head
 }
 
 func main() {
